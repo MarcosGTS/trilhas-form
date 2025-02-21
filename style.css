@@ -1,0 +1,282 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('./reset.css');
+@import url('./general.css');
+
+body {
+    display: grid;
+    grid-template-columns: 50% 50%;
+
+    height: 100vh;
+}
+
+.background__app {
+    display: grid;
+    justify-content: end;
+    background-color: var(--surface-primary);
+    overflow-y: scroll;
+}
+
+.background__aside {
+    background-color: var(--brand);
+}
+
+#app,
+#hero {
+    width: calc(1312px / 2);
+    padding: 4rem;
+}
+
+.app__heading {
+    display: grid;
+    gap: 0.5rem;
+
+    & a {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        color: var(--text-secondary);
+    }
+
+    & a::before {
+        content: "";
+        display: inline-block;
+        width: 1.5rem;
+        height: 1.5rem;
+        background: url("./imgs/arrow-left.svg") no-repeat;
+        background-size: cover;
+    }
+}
+
+.form {
+    display: grid;
+    margin-top: 3rem;
+    gap: 3rem;
+
+    & fieldset {
+        & legend {
+            margin-bottom: 1.5rem;
+        }
+
+        display: grid;
+        gap: 1.5rem;
+    }
+
+    label {
+        display: block;
+        cursor: pointer;
+
+        font-size: 0.875rem;
+        margin-bottom: 0.25rem;
+        color: var(--text-secondary);
+    }
+
+    .two-col-row {
+        display: grid;
+        gap: 1.25rem;
+        grid-template-columns: 1.9fr 1fr;
+        justify-content: space-between;
+    }
+}
+
+.file-container {
+    position: relative;
+    width: 100%;
+    padding: 1.75rem;
+    aspect-ratio: 3;
+    margin-top: 0.5rem;
+
+    border: 3px dashed var(--stroke-default);
+    border-radius: 0.5rem;
+    color: var(--text-tertiary);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & input[type="file"] {
+        position: absolute;
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+
+        opacity: 0;
+    }
+
+    & div {
+
+        & img {
+            margin: 0 auto;
+            width: 3rem;
+        }
+
+        width: 10.5rem;
+        font-size: 1rem;
+        text-align: center;
+        line-height: 1.5rem;
+    }
+}
+
+.radio-container {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr 1fr;
+}
+
+.radio-card {
+    position: relative;
+    width: 16rem;
+    height: 7.5rem;
+
+    text-align: center;
+
+    border: 1px solid var(--stroke-default);
+    border-radius: 0.5rem;
+
+    & label {
+        position: absolute;
+        display: flex;
+
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        width: 100%;
+        height: 100%;
+
+        font-size: 1rem;
+    }
+
+    & labe * {
+        pointer-events: none;
+    }
+
+    & img {
+        width: 2.5rem;
+        height: 2.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    & input {
+        display: none;
+    }
+}
+
+.radio-card::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    left: 0.5rem;
+    top: 0.5rem;
+
+    width: 1.5rem;
+    height: 1.5rem;
+    background: url("./imgs/circle-radio.svg") no-repeat;
+    background-size: cover;
+}
+
+.radio-card:has(input:checked) {
+    outline: 2px solid var(--text-highlight);
+}
+
+.radio-card:has(input:checked)::after {
+    background: url("./imgs/check-radio.svg") no-repeat;
+}
+
+.form__terms {
+    & input {
+        display: none;
+    }
+
+    & label {
+        display: flex;
+        gap: 0.75rem;
+    }
+
+    & span {
+        position: relative;
+    }
+
+    & input:checked+label span::before {
+        position: absolute;
+        content: "";
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        background: url("imgs/check-mark.svg") no-repeat center;
+        background-size: 75%;
+    }
+
+    & a {
+        font-weight: bold;
+        color: var(--text-highlight);
+    }
+}
+
+.form__buttons-container {
+    display: flex;
+    justify-content: end;
+    gap: 1rem;
+
+    & .form__button,
+    .form__button__confirm {
+        width: fit-content;
+        padding: 0.75rem 1.5rem;
+    }
+
+    & .form__button {
+        border: 2px solid var(--text-highlight);
+        color: var(--text-highlight);
+        background-color: var(--surface-primary);
+    }
+
+    & .form__button__confirm {
+        color: var(--surface-primary);
+        background-color: var(--text-highlight);
+    }
+}
+
+
+#hero {
+    display: grid;
+    align-items: center;
+    height: 100%;
+}
+
+#ilustracao {
+    width: 31.25rem;
+    margin: 0 auto;
+}
+
+#logo {
+    width: 13.25rem;
+    margin: 0 auto;
+}
+
+.form__error {
+    display: none;
+    align-items: center;
+    gap: 0.25rem;
+    margin-top: 0.25rem;
+
+    color: var(--semantic-error);
+
+}
+
+.form__error::before {
+    content: "";
+    display: inline-block;
+
+    width: 1.25rem;
+    height: 1.25rem;
+
+    background: url("./imgs/error-icon.svg") no-repeat center;
+    background-size: 110%;
+}
+
+input:invalid+.form__error {
+    display: flex;
+}
+
+input:invalid {
+    border: 2px solid var(--semantic-error);
+}

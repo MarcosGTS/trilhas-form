@@ -1,0 +1,111 @@
+* {
+    --brand: #2135a6;
+
+    --text-primary: #292524;
+    --text-secondary: #57534e;
+    --text-tertiary: #8f8881;
+    --text-highlight: #e43a12;
+
+    --surface-primary: #ffffff;
+    --surface-secundary: #fee7d6;
+    --surface-disable: #e7e5e4;
+
+    --stroke-default: #d6d3d1;
+    --stroke-highlight: #f3541c;
+
+    --semantic-error: #dc2626;
+
+    font-family: "Poppins", serif;
+    font-size: 1rem;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    line-height: 120%;
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+h3 {
+    font-size: 1.25rem;
+}
+
+h4 {
+    font-size: 1rem;
+}
+
+p {
+    color: var(--text-secondary);
+}
+
+button {
+    cursor: pointer;
+    transition: all ease-in-out 100ms;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+input,
+button,
+select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--stroke-default);
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    color: var(--text-primary)
+}
+
+input:disabled {
+    color: var(--text-tertiary);
+    background-color: var(--surface-disable);
+}
+
+.radio-card:hover,
+.file-container:has(input:focus),
+:is(input, select, button, a):focus {
+    border-color: var(--text-highlight);
+    outline: solid 0.24rem var(--surface-secundary);
+}
+
+select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+
+    background-color: var(--surface-primary);
+}
+
+.form__input-container:has(select) {
+    position: relative;
+}
+
+.form__input-container:has(select)::before {
+    position: absolute;
+    content: "";
+    display: block;
+
+    width: 1.5rem;
+    height: 1.5rem;
+
+    right: 0.5rem;
+    top: 45%;
+
+    background: url("imgs/arrow-down.svg") no-repeat center;
+    background-image: 100%;
+}
+
+.form__input-container:has(select:focus)::before {
+    rotate: 180deg;
+}
