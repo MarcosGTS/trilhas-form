@@ -102,7 +102,7 @@ select {
     right: 0.5rem;
     top: 45%;
 
-    background: url("imgs/arrow-down.svg") no-repeat center;
+    background: url("../imgs/arrow-down.svg") no-repeat center;
     background-image: 100%;
 }
 
