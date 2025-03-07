@@ -280,3 +280,144 @@ input:invalid+.form__error {
 input:invalid {
     border: 2px solid var(--semantic-error);
 }
+
+/* Responsividade */
+@media (max-width: 1024px) {
+    body {
+        grid-template-columns: 1fr;
+    }
+
+    .background__app {
+        justify-content: center;
+        overflow-y: auto;
+    }
+
+    .background__aside {
+        display: none;
+    }
+
+    #app {
+        width: 100%;
+        max-width: 768px;
+        padding: 3rem;
+        margin: 0 auto;
+    }
+
+    .radio-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+    }
+
+    .radio-card {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    #app {
+        max-width: 90%;
+        padding: 2rem;
+    }
+
+    .form {
+        gap: 2rem;
+        margin-top: 1.5rem;
+    }
+
+    .form .two-col-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .form__buttons-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .form__button,
+    .form__button__confirm {
+        width: 100%;
+        text-align: center;
+    }
+
+    .radio-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    #app {
+        padding: 1.5rem;
+    }
+
+    .app__heading a {
+        font-size: 0.875rem;
+    }
+
+    .file-container {
+        padding: 1rem;
+    }
+
+    .form label {
+        font-size: 0.75rem;
+    }
+
+    .radio-card {
+        height: auto;
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        text-align: left;
+        border: 2px solid var(--stroke-default);
+        cursor: pointer;
+        position: relative;
+        gap: 0.75rem;
+    }
+
+    .radio-card img {
+        display: block; 
+        width: 2rem; 
+        height: auto;
+    }
+
+    .radio-card label {
+        position: static;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+        height: 100%;
+        font-weight: bold;
+        cursor: pointer;
+        gap: 0.75rem;
+    }
+
+    .radio-card input {
+        position: absolute;
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+    }
+
+    .radio-card:has(input:checked) {
+        outline: 2px solid var(--text-highlight);
+        background-color: var(--surface-primary);
+    }
+
+    .radio-card:has(input:checked)::after {
+        position: absolute;
+        top: 0.5rem;
+        left: 0.5rem;
+        font-size: 1.2rem;
+        color: var(--text-highlight);
+        font-weight: bold;
+    }
+
+    .form__terms label {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+    }
+}
