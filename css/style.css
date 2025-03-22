@@ -305,3 +305,22 @@ input:invalid {
         }
     }
 }
+
+@media (max-width: calc(1312px/2)) {
+    #app {
+        padding: 2rem;
+    }
+
+    .radio-card {
+        width: 100%;
+    }     
+
+    .form__buttons-container {
+        flex-direction: column-reverse;
+
+        & .form__button,
+        .form__button__confirm {
+            width: 100%;
+        }
+    }
+}
