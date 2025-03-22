@@ -3,6 +3,7 @@ const cep = document.getElementById("cep");
 const street = document.getElementById("rua");
 const city = document.getElementById("cidade");
 const state = document.getElementById("estado");
+const inputFiles = document.querySelectorAll(".file-container");
 
 $('#cep').mask('00000-000', { placeholder: "00000-000" });
 $('#cpf').mask('000.000.000-00', { placeholder: "123.456.789-00" });
@@ -30,11 +31,30 @@ cep.onchange = async function (e) {
 
 }
 
+for (let fileContainer of inputFiles) {
+    setShowFilename(fileContainer);
+}
+
 function setAddressValues(data) {
     street.value = data.logradouro;
     city.value = data.localidade;
     state.value = data.uf;
 }
+
+function setShowFilename(fileContainer) {
+    const fileInput    = fileContainer.querySelector("input");
+    const filename     = fileContainer.querySelector("p");
+    const standartText = filename.innerText;
+
+    fileInput.addEventListener("input", () => {
+        filename.innerText = standartText;
+
+        if (fileInput.files[0]) {
+            filename.innerText = fileInput.files[0].name 
+        }
+    })
+}
+
 
 /* 
     Fonte do código 
