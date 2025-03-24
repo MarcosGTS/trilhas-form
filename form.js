@@ -55,6 +55,28 @@ function setShowFilename(fileContainer) {
     })
 }
 
+// Armazenamento de informações ja cadastradas
+const signupState = JSON.parse(localStorage.getItem("signupState") || "{}");
+const allInputs = document.querySelectorAll("input:not([type=file]), select");
+console.log(signupState, allInputs);
+
+// Ao iniciar carregar informacoes do localstorage
+for (const field of Object.keys(signupState)) {
+    const input = document.getElementById(field);
+    input.value = signupState[field];
+}
+
+// Todas as alteracões devem ser armazenadas
+for (const input of allInputs) {
+    input.addEventListener("input", () => {
+        signupState[input.id] = input.value;
+        localStorage.setItem("signupState", JSON.stringify(signupState));
+        console.log(signupState);
+    }) 
+}
+
+// Remover informações quando cadastro for finalizado
+
 
 /* 
     Fonte do código 
