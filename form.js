@@ -61,22 +61,41 @@ const allInputs = document.querySelectorAll("input:not([type=file]), select");
 console.log(signupState, allInputs);
 
 // Ao iniciar carregar informacoes do localstorage
-for (const field of Object.keys(signupState)) {
-    const input = document.getElementById(field);
-    input.value = signupState[field];
+for (const input of allInputs) {
+    if (input.type === "radio") {
+        const field = input.name;
+        input.checked = (signupState[field] === input.id);
+    } else {
+        const field = input.id;
+        input.value = signupState[field] || "";
+    }
 }
 
 // Todas as alteracões devem ser armazenadas
 for (const input of allInputs) {
     input.addEventListener("input", () => {
-        signupState[input.id] = input.value;
-        localStorage.setItem("signupState", JSON.stringify(signupState));
+        if (input.type === "radio") {
+            signupState[input.name] = input.id;
+        } else {
+            signupState[input.id] = input.value;
+        }
         console.log(signupState);
+        localStorage.setItem("signupState", JSON.stringify(signupState));
     }) 
 }
 
 // Remover informações quando cadastro for finalizado
+const cancelBtn = document.getElementById("cancelBtn");
 
+cancelBtn.onclick = (e) => {
+    const allInputs = document.querySelectorAll("input, select");
+
+    for (let input of allInputs) {
+        input.value = "";
+    }
+
+    localStorage.clear();
+}
 
 /* 
     Fonte do código 
