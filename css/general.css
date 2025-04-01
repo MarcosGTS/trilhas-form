@@ -25,6 +25,7 @@ h3,
 h4 {
     line-height: 120%;
     font-weight: bold;
+    font-family: "Poppins", serif;
 }
 
 h1 {
@@ -44,6 +45,7 @@ h4 {
 }
 
 p {
+    font-family: "Poppins", serif;
     color: var(--text-secondary);
 }
 
@@ -108,4 +110,43 @@ select {
 
 .form__input-container:has(select:focus)::before {
     rotate: 180deg;
+}
+
+.modal__background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0, 0.8);
+
+    & .modal__card {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        width: 100%;
+        max-width: 450px;
+
+        background-color: var(--surface-primary);
+
+        padding: 2rem;
+        border-radius: 8px;
+        border: 1px solid var(--brand);
+    }
+
+    & .modal__body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+
+        & img {
+            width: 35%
+        }
+    }
+    
+}
+
+.hidde {
+    display: none;
 }

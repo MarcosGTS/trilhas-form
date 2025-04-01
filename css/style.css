@@ -223,18 +223,18 @@ body {
         padding: 0.75rem 1.5rem;
     }
 
-    & .form__button {
-        border: 2px solid var(--text-highlight);
-        color: var(--text-highlight);
-        background-color: var(--surface-primary);
-    }
-
-    & .form__button__confirm {
-        color: var(--surface-primary);
-        background-color: var(--text-highlight);
-    }
 }
 
+.form__button {
+    border: 2px solid var(--text-highlight);
+    color: var(--text-highlight);
+    background-color: var(--surface-primary);
+}
+
+.form__button__confirm {
+    color: var(--surface-primary);
+    background-color: var(--text-highlight);
+}
 
 #hero {
     display: grid;
