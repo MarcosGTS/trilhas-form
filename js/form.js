@@ -8,6 +8,8 @@ const cep = document.getElementById("cep");
 const street = document.getElementById("rua");
 const city = document.getElementById("cidade");
 const state = document.getElementById("estado");
+const password = document.getElementById("password");
+const confPass = document.getElementById("password-confirm");
 const inputFiles = document.querySelectorAll(".file-container");
 
 $('#cep').mask('00000-000', { placeholder: "00000-000" });
@@ -36,6 +38,23 @@ cep.onchange = async function (e) {
 
 }
 
+function setAddressValues(data) {
+    street.value = data.logradouro;
+    city.value = data.localidade;
+    state.value = data.uf;
+}
+
+password.oninput = checkConfPass;
+confPass.oninput = checkConfPass;
+
+function checkConfPass() {
+    if (password.value == confPass.value) {
+        confPass.setCustomValidity('');
+    } else {
+        confPass.setCustomValidity("As senhas não conferem.")
+    }
+} 
+
 submitBtn.addEventListener("click", (e) =>  {
     e.preventDefault();
 
@@ -43,7 +62,6 @@ submitBtn.addEventListener("click", (e) =>  {
     if (form.checkValidity()) {
         // show loading modal 
         modal.show()
-
         const formData = new FormData(form);
 
         // Send form infos via fetch
@@ -79,12 +97,6 @@ for (let fileContainer of inputFiles) {
     setShowFilename(fileContainer);
 }
 
-function setAddressValues(data) {
-    street.value = data.logradouro;
-    city.value = data.localidade;
-    state.value = data.uf;
-}
-
 function setShowFilename(fileContainer) {
     const fileInput    = fileContainer.querySelector("input");
     const filename     = fileContainer.querySelector("p");
@@ -101,7 +113,7 @@ function setShowFilename(fileContainer) {
 
 // Armazenamento de informações ja cadastradas
 const signupState = JSON.parse(localStorage.getItem("signupState") || "{}");
-const allInputs = document.querySelectorAll("input:not([type=file]), select");
+const allInputs = document.querySelectorAll("input:not([type=file]):not([type=password]), select");
 console.log(signupState, allInputs);
 
 // Ao iniciar carregar informacoes do localstorage
