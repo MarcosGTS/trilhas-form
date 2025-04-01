@@ -1,3 +1,8 @@
+import { modal } from "./modal.js";
+import { basicConffeti } from "./deafultConffeties.js";
+
+const form = document.getElementById("form");
+const submitBtn = document.getElementById("submitBtn");
 const cpf = document.getElementById("cpf");
 const cep = document.getElementById("cep");
 const street = document.getElementById("rua");
@@ -30,6 +35,45 @@ cep.onchange = async function (e) {
     }
 
 }
+
+submitBtn.addEventListener("click", (e) =>  {
+    e.preventDefault();
+
+    // Show up modal
+    if (form.checkValidity()) {
+        // show loading modal 
+        modal.show()
+
+        const formData = new FormData(form);
+
+        // Send form infos via fetch
+        fetch("https://your-backend.com/submit", {
+            method: "POST",
+            body: formData,
+        })
+        .then(response => response.json())
+        // Show messagen (Confirmation / Denial)
+        .then(data => {
+            if (!data.error) {
+                modal.setImage("/imgs/check-radio.svg");
+                basicConffeti();
+            } else {
+                modal.setImage("/imgs/error-icon.svg");
+            }
+
+            modal.setText(data.message);
+            modal.setImage("/imgs/error-icon.svg");
+        })
+        .catch(error => {
+            modal.setText(error);
+            modal.setImage("/imgs/error-icon.svg");
+        });    
+
+    } else {
+        form.reportValidity();
+    }
+
+});
 
 for (let fileContainer of inputFiles) {
     setShowFilename(fileContainer);

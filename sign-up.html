@@ -11,8 +11,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.12/jquery.mask.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.12/jquery.mask.min.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
     <link rel="stylesheet" href="css/style.css">
-    <script src="/form.js" defer></script>
+    <script src="/js/form.js"  type="module" defer></script>
+    <script src="/js/modal.js" type="module" defer></script>
+
 </head>
 
 <body>
@@ -24,7 +28,7 @@
                 <p>Preencha os dados abaixo para fazer sua inscrição no Programa Trilhas.</p>
             </section>
 
-            <form class="form" action="">
+            <form id="form" class="form" action="">
 
                 <fieldset>
                     <legend>
@@ -235,6 +239,20 @@
             <img id="logo" src="imgs/logo.png" alt="">
         </aside>
     </div>
+
+    <div class="modal__background">
+        <div class="modal__card">
+            <div class="modal__header">
+                <h3>Resultado</h3>
+            </div>
+            <div class="modal__body">
+                <img src="imgs/loading.gif" alt="">
+                <p>Fazendo requisição ...</p>
+                <button class="form__button__confirm">Confimar!</button>
+            </div>
+        </div>
+    </div>
+    
 </body>
 
 </html>
