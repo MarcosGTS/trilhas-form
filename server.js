@@ -125,7 +125,7 @@ app.post('/api/login', async (req, res) => {
     if (match) {
       // Retornando usuário sem a senha
       const { senha, ...userWithoutPassword } = user;
-      return res.status(200).json({ 
+      return res.status(200).json({ success:true,
         message: 'Login bem-sucedido',
         user: userWithoutPassword
       });
@@ -169,7 +169,7 @@ app.post('/api/register', upload.fields([
     }
     
     // Agora podemos processar o restante do registro
-    const userData = JSON.parse(req.body);
+    const userData = req.body;
     
     console.log(userData);
     console.log(req.files);
@@ -221,7 +221,7 @@ app.post('/api/register', upload.fields([
     // Confirmar transação
     await pool.query('COMMIT');
     
-    res.status(201).json({ message: 'Usuário registrado com sucesso' });
+    res.status(201).json({ success: true, message: 'Usuário registrado com sucesso' });
   } catch (error) {
     // Reverter transação em caso de erro
     await pool.query('ROLLBACK');

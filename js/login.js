@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     loginForm.addEventListener('submit', async function(e) {
         e.preventDefault();
-        
+
         if (!loginForm.checkValidity()) {
             return;
         }
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const data = await response.json();
             
-            if (response.ok) {
+            if (data.success) {
                 // Login bem-sucedido
                 alert("Login realizado com sucesso!");
                 
@@ -35,6 +35,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 window.location.href = '/sign-up';
             } else {
                 // Login falhou
+
+                alert("Login falhou: " + data.message);
+                
                 const errorSpan = passwordInput.nextElementSibling;
                 if (errorSpan && errorSpan.classList.contains("form__error")) {
                     errorSpan.textContent = data.message;
