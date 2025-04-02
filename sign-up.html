@@ -33,19 +33,19 @@
 
                     <div class="form__input-container">
                         <label for="nome">Nome completo</label>
-                        <input type="text" id="nome" placeholder="Daiane Silva" required>
+                        <input type="text" id="nome" name="nome" placeholder="Daiane Silva" required>
                         <span class="form__error">O nome é obrigatório.</span>
                     </div>
 
                     <div class="form__input-container">
                         <label for="data_nascimento">Data de nascimento</label>
-                        <input type="date" id="data_nascimento" max="2009-01-01" required>
+                        <input type="date" id="data_nascimento" name="data_nascimento" max="2009-01-01" required>
                         <span class="form__error">Informe uma data válida.</span>
                     </div>
 
                     <div class="form__input-container">
                         <label for="cpf">CPF</label>
-                        <input type="text" id="cpf" maxlength="14" pattern="^\d{3}\.\d{3}\.\d{3}-\d{2}$"
+                        <input type="text" id="cpf" name="cpf" maxlength="14" pattern="^\d{3}\.\d{3}\.\d{3}-\d{2}$"
                             placeholder="123.456.789-00" required>
                         <span class="form__error">Informe um CPF válido.</span>
                     </div>
@@ -62,13 +62,13 @@
 
                     <div class="form__input-container">
                         <label for="email">Email</label>
-                        <input type="email" id="email" placeholder="exemplo@dominio.com" required>
+                        <input type="email" id="email" name="email" placeholder="exemplo@dominio.com" required>
                         <span class="form__error">Insira um email válido.</span>
                     </div>
 
                     <div class="form__input-container">
                         <label for="telefone">Telefone</label>
-                        <input type="tel" id="telefone" maxlength="15" pattern="^\(\d{2}\) \d{4,5}-\d{4}$"
+                        <input type="tel" id="telefone" name="telefone" maxlength="15" pattern="^\(\d{2}\) \d{4,5}-\d{4}$"
                             placeholder="(11) 98888-7777" required>
                         <span class="form__error">Informe um telefone válido.</span>
                     </div>
@@ -76,7 +76,7 @@
                     <div class="form__input-container">
                         <label for="documento">Documento de identidade</label>
                         <div class="file-container">
-                            <input type="file" id="documento" required>
+                            <input type="file" id="documento" name="documento" required>
                             <div>
                                 <img src="imgs/cloud-upload.svg" alt="">
                                 <p>Clique aqui para selecionar o arquivo</p>
@@ -93,38 +93,38 @@
 
                     <div class="form__input-container">
                         <label for="cep">CEP</label>
-                        <input type="text" id="cep" maxlength="9" pattern="^\d{5}-\d{3}$" placeholder="01234-567" required>
+                        <input type="text" id="cep" name="cep" maxlength="9" pattern="^\d{5}-\d{3}$" placeholder="01234-567" required>
                         <span class="form__error">Informe um CEP válido.</span>
                     </div>
 
                     <div class="two-col-row">
                         <div class="form__input-container">
                             <label for="rua">Rua</label>
-                            <input type="text" id="rua" placeholder="Rua 1" disabled>
+                            <input type="text" id="rua" name="rua" placeholder="Rua 1" disabled>
                         </div>
 
                         <div class="form__input-container">
                             <label for="numero">Número</label>
-                            <input type="text" id="numero" placeholder="01-A">
+                            <input type="text" id="numero" name="numero" placeholder="01-A">
                         </div>
                     </div>
 
                     <div class="two-col-row">
                         <div class="form__input-container">
                             <label for="cidade">Cidade</label>
-                            <input type="text" id="cidade" placeholder="São Luís" disabled>
+                            <input type="text" id="cidade" name="cidade" placeholder="São Luís" disabled>
                         </div>
 
                         <div class="form__input-container">
                             <label for="estado">Estado</label>
-                            <input type="text" id="estado" placeholder="MA" disabled>
+                            <input type="text" id="estado" name="cidade" placeholder="MA" disabled>
                         </div>
                     </div>
 
                     <div class="form__input-container">
                         <label for="comprovante">Comprovante de residência</label>
                         <div class="file-container">
-                            <input type="file" id="comprovante" required>
+                            <input type="file" id="comprovante" name="comprovante" required>
                             <div>
                                 <img src="imgs/cloud-upload.svg" alt="">
                                 <p>Clique aqui para selecionar o arquivo</p>
@@ -194,25 +194,25 @@
 
                     <div class="form__input-container">
                         <label for="user-id">Id do usuário</label>
-                        <input type="text" id="user-id" placeholder="Daiane Silva" required>
+                        <input type="text" id="user-id" name="user-id" placeholder="Daiane Silva" required>
                         <span class="form__error">O nome é obrigatório.</span>
                     </div>
 
                     <div class="form__input-container">
                         <label for="password">Senha</label>
-                        <input type="password" id="password" required>
+                        <input type="password" id="password" name="password" required>
                         <span class="form__error">Senha é obrigatória.</span>
                     </div>
 
                     <div class="form__input-container">
                         <label for="password-confirm">Confirmação da senha</label>
-                        <input type="password" id="password-confirm" required>
+                        <input type="password" id="password-confirm" name="password-confirm" required>
                         <span class="form__error">Senha é obrigatória.</span>
                     </div>
                 </fieldset>
 
                 <div class="form__terms">
-                    <input type="checkbox" id="termos" required>
+                    <input type="checkbox" id="termos" name="termos" required>
                     <label for="termos">
                         <span><img src="imgs/check-box.svg" alt=""></span>
                         <p>Declaro que li e concordo com os <a href="">Termos e Condições</a> e com a <a
