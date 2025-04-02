@@ -64,15 +64,17 @@ submitBtn.addEventListener("click", (e) =>  {
         modal.show()
         const formData = new FormData(form);
 
+        console.log(FormData);
+
         // Send form infos via fetch
-        fetch("https://your-backend.com/submit", {
+        fetch("http://localhost:3000/api/register", {
             method: "POST",
             body: formData,
         })
         .then(response => response.json())
         // Show messagen (Confirmation / Denial)
         .then(data => {
-            if (!data.error) {
+            if (data.success) {
                 modal.setImage("/imgs/check-radio.svg");
                 basicConffeti();
             } else {
@@ -80,7 +82,6 @@ submitBtn.addEventListener("click", (e) =>  {
             }
 
             modal.setText(data.message);
-            modal.setImage("/imgs/error-icon.svg");
         })
         .catch(error => {
             modal.setText(error);
