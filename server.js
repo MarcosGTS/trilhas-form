@@ -160,6 +160,8 @@ app.post('/api/register', upload.fields([
   { name: 'documento', maxCount: 1 },
   { name: 'comprovante', maxCount: 1 }
 ]), async (req, res) => {
+  console.log(req.body);
+
   try {
     // Verificar se os arquivos foram enviados
     if (!req.files || !req.files.documento || !req.files.comprovante) {
@@ -167,8 +169,11 @@ app.post('/api/register', upload.fields([
     }
     
     // Agora podemos processar o restante do registro
-    const userData = JSON.parse(req.body.userData);
+    const userData = JSON.parse(req.body);
     
+    console.log(userData);
+    console.log(req.files);
+
     // Iniciar transação
     await pool.query('START TRANSACTION');
     
@@ -206,7 +211,7 @@ app.post('/api/register', upload.fields([
         userData.telefone, 
         req.files.documento[0].path,
         hashedPassword,
-        userData.userId,
+        userData.username,
         2, // Perfil padrão: participante
         trilhaId,
         enderecoId

@@ -8,6 +8,8 @@ const cep = document.getElementById("cep");
 const street = document.getElementById("rua");
 const city = document.getElementById("cidade");
 const state = document.getElementById("estado");
+const documento = document.getElementById("documento");
+const comprovante = document.getElementById("comprovante");
 const password = document.getElementById("password");
 const confPass = document.getElementById("password-confirm");
 const inputFiles = document.querySelectorAll(".file-container");
@@ -63,6 +65,10 @@ submitBtn.addEventListener("click", (e) =>  {
         // show loading modal 
         modal.show()
         const formData = new FormData(form);
+
+        // inserting files inputs
+        // formData.append("comprovante", comprovante.files[0]);
+        // formData.append("documento", documento.files[0]);
 
         console.log(FormData);
 
