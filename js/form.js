@@ -8,6 +8,8 @@ const cep = document.getElementById("cep");
 const street = document.getElementById("rua");
 const city = document.getElementById("cidade");
 const state = document.getElementById("estado");
+const documento = document.getElementById("documento");
+const comprovante = document.getElementById("comprovante");
 const password = document.getElementById("password");
 const confPass = document.getElementById("password-confirm");
 const inputFiles = document.querySelectorAll(".file-container");
@@ -64,15 +66,21 @@ submitBtn.addEventListener("click", (e) =>  {
         modal.show()
         const formData = new FormData(form);
 
+        // inserting files inputs
+        // formData.append("comprovante", comprovante.files[0]);
+        // formData.append("documento", documento.files[0]);
+
+        console.log(FormData);
+
         // Send form infos via fetch
-        fetch("https://your-backend.com/submit", {
+        fetch("http://localhost:3000/api/register", {
             method: "POST",
             body: formData,
         })
         .then(response => response.json())
         // Show messagen (Confirmation / Denial)
         .then(data => {
-            if (!data.error) {
+            if (data.success) {
                 modal.setImage("/imgs/check-radio.svg");
                 basicConffeti();
             } else {
@@ -80,7 +88,6 @@ submitBtn.addEventListener("click", (e) =>  {
             }
 
             modal.setText(data.message);
-            modal.setImage("/imgs/error-icon.svg");
         })
         .catch(error => {
             modal.setText(error);
