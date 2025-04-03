@@ -27,6 +27,10 @@ confimBtn.addEventListener("click", () => {
     modal.setText(DEFAULT_TEXT);
     modal.setImage(DEFAULT_IMAGE);
     modal.hidde();
+
+    if (modal.redirect) {
+        window.location.replace(modal.redirect);
+    }
 })
 
 
