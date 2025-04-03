@@ -1,10 +1,13 @@
+require('dotenv').config();
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
 const mysql = require('mysql2/promise');
-const path = require('path');
 const multer = require('multer');
+
+const path = require('path');
 const fs = require('fs');
 
 // Configuração do app Express
@@ -35,10 +38,10 @@ const upload = multer({ storage: storage });
 
 // Configuração da conexão com o banco de dados
 const dbConfig = {
-  host: 'localhost',
-  user: 'root',
-  password: '2012110', 
-  database: 'Trilhas'
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD, 
 };
 
 // Função para criar pool de conexão
