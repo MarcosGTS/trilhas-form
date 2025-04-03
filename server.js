@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, '.')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Configuração de armazenamento para uploads
 const storage = multer.diskStorage({
@@ -37,8 +37,8 @@ const upload = multer({ storage: storage });
 const dbConfig = {
   host: 'localhost',
   user: 'root',
-  password: '12345', 
-  database: 'trilhas'
+  password: '2012110', 
+  database: 'Trilhas'
 };
 
 // Função para criar pool de conexão
