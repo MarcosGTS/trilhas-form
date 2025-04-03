@@ -30,19 +30,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Salvar informações do usuário na sessão
                 sessionStorage.setItem('currentUser', JSON.stringify(data.user));
-                
-                // Redirecionar para a página sign-up.html
-                window.location.href = '/sign-up';
             } else {
                 // Login falhou
-
                 alert("Login falhou: " + data.message);
-                
-                const errorSpan = passwordInput.nextElementSibling;
-                if (errorSpan && errorSpan.classList.contains("form__error")) {
-                    errorSpan.textContent = data.message;
-                    errorSpan.style.display = "flex";
-                }
             }
         } catch (error) {
             console.error("Erro ao fazer login:", error);
