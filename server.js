@@ -173,9 +173,6 @@ app.post('/api/register', upload.fields([
     
     // Agora podemos processar o restante do registro
     const userData = req.body;
-    
-    console.log(userData);
-    console.log(req.files);
 
     // Iniciar transação
     await pool.query('START TRANSACTION');

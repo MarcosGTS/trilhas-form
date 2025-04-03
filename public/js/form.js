@@ -1,6 +1,8 @@
 import { modal } from "./modal.js";
 import { basicConffeti } from "./deafultConffeties.js";
 
+modal.redirect = "/";
+
 const form = document.getElementById("form");
 const submitBtn = document.getElementById("submitBtn");
 const cpf = document.getElementById("cpf");
@@ -8,11 +10,11 @@ const cep = document.getElementById("cep");
 const street = document.getElementById("rua");
 const city = document.getElementById("cidade");
 const state = document.getElementById("estado");
-const documento = document.getElementById("documento");
-const comprovante = document.getElementById("comprovante");
 const password = document.getElementById("password");
 const confPass = document.getElementById("password-confirm");
 const inputFiles = document.querySelectorAll(".file-container");
+
+const disabledInputs = document.querySelectorAll("input:disabled");
 
 $('#cep').mask('00000-000', { placeholder: "00000-000" });
 $('#cpf').mask('000.000.000-00', { placeholder: "123.456.789-00" });
@@ -41,9 +43,16 @@ cep.onchange = async function (e) {
 }
 
 function setAddressValues(data) {
+    const changedEvent = new Event('change');
+
     street.value = data.logradouro;
+    street.dispatchEvent(changedEvent);
+
     city.value = data.localidade;
+    city.dispatchEvent(changedEvent);
+
     state.value = data.uf;
+    state.dispatchEvent(changedEvent);
 }
 
 password.oninput = checkConfPass;
@@ -66,11 +75,9 @@ submitBtn.addEventListener("click", (e) =>  {
         modal.show()
         const formData = new FormData(form);
 
-        // inserting files inputs
-        // formData.append("comprovante", comprovante.files[0]);
-        // formData.append("documento", documento.files[0]);
-
-        console.log(FormData);
+        for (let input of disabledInputs) {
+            formData.append(input.name, input.value);
+        }
 
         // Send form infos via fetch
         fetch("http://localhost:3000/api/register", {
@@ -78,10 +85,10 @@ submitBtn.addEventListener("click", (e) =>  {
             body: formData,
         })
         .then(response => response.json())
-        // Show messagen (Confirmation / Denial)
         .then(data => {
             if (data.success) {
                 modal.setImage("/imgs/check-radio.svg");
+                formClear();
                 basicConffeti();
             } else {
                 modal.setImage("/imgs/error-icon.svg");
@@ -121,7 +128,6 @@ function setShowFilename(fileContainer) {
 // Armazenamento de informações ja cadastradas
 const signupState = JSON.parse(localStorage.getItem("signupState") || "{}");
 const allInputs = document.querySelectorAll("input:not([type=file]):not([type=password]), select");
-console.log(signupState, allInputs);
 
 // Ao iniciar carregar informacoes do localstorage
 for (const input of allInputs) {
@@ -136,13 +142,12 @@ for (const input of allInputs) {
 
 // Todas as alteracões devem ser armazenadas
 for (const input of allInputs) {
-    input.addEventListener("input", () => {
+    input.addEventListener("change", () => {
         if (input.type === "radio") {
             signupState[input.name] = input.id;
         } else {
             signupState[input.id] = input.value;
         }
-        console.log(signupState);
         localStorage.setItem("signupState", JSON.stringify(signupState));
     }) 
 }
@@ -150,7 +155,9 @@ for (const input of allInputs) {
 // Remover informações quando cadastro for finalizado
 const cancelBtn = document.getElementById("cancelBtn");
 
-cancelBtn.onclick = (e) => {
+cancelBtn.onclick = formClear; 
+
+function formClear() {
     const allInputs = document.querySelectorAll("input, select");
 
     for (let input of allInputs) {
