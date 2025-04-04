@@ -281,6 +281,17 @@ input:invalid {
     border: 2px solid var(--semantic-error);
 }
 
+.theme__button {
+    position: fixed;
+    width: 10rem;
+    right: 2rem;
+    top: 2rem;
+
+    color: var(--text-highlight);
+    border-color: var(--text-highlight);
+    background-color: transparent;
+}
+
 /* Responsividade */
 @media (max-width:1312px) {
     body {

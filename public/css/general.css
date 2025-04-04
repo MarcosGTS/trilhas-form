@@ -1,4 +1,9 @@
 * {
+    font-family: "Poppins", serif;
+    font-size: 1rem;
+}
+
+body {
     --brand: #2135a6;
 
     --text-primary: #292524;
@@ -14,9 +19,24 @@
     --stroke-highlight: #f3541c;
 
     --semantic-error: #dc2626;
+}
 
-    font-family: "Poppins", serif;
-    font-size: 1rem;
+.dark-mode{
+    --brand:#171717;
+
+    --text-primary: #fafafa;
+    --text-secondary:#898989;
+    --text-tertiary: #8f8881;
+    --text-highlight: #e43a12;
+
+    --surface-primary: #121212;
+    --surface-secundary: #282828;
+    --surface-disable: #3f3f3f;
+
+    --stroke-default: #2c2c2c;
+    --stroke-highlight: #f3541c;
+
+    --semantic-error: #dc2626;
 }
 
 h1,
@@ -26,6 +46,7 @@ h4 {
     line-height: 120%;
     font-weight: bold;
     font-family: "Poppins", serif;
+    color: var(--text-primary);
 }
 
 h1 {
@@ -49,6 +70,10 @@ p {
     color: var(--text-secondary);
 }
 
+a:link, a:visited {
+    color: var(--text-highlight);
+}
+
 button {
     cursor: pointer;
     transition: all ease-in-out 100ms;
@@ -66,7 +91,8 @@ select {
     border: 1px solid var(--stroke-default);
     border-radius: 0.5rem;
     font-size: 1rem;
-    color: var(--text-primary)
+    color: var(--text-primary);
+    background-color: var(--surface-primary)
 }
 
 input:disabled {
