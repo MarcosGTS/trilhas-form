@@ -3,6 +3,23 @@
 }
 
 .sign-up__container {
+    display: grid;
+    gap: 1rem;
     padding: 4rem;
     text-align: center;
+}
+
+.feedback__link {
+    animation: waving 1s infinite alternate;
+    animation-timing-function:  linear;
+}
+
+@keyframes waving {
+    0% {
+        transform: rotate(-1deg);
+    }
+
+    100% {
+        transform: rotate(1deg);
+    }
 }
