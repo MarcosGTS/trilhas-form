@@ -133,9 +133,3 @@ O site possui animações e pequenos efeitos que tornam a experiência mais agra
 - [Apresentação 1](https://drive.google.com/file/d/1p6mRJ1Y5g6twMDGgjz8j99cxkSlytLfn/view?usp=sharing)
 
 > **Observação:** Os documentos obrigatórios estão disponíveis na pasta `Documents`.
-
----
-
-Se quiser, posso converter esse texto em PDF, criar um `README.md` com ele ou ajudar a traduzi-lo para o inglês. Deseja isso?
-
-
