@@ -60,26 +60,6 @@ async function createPool() {
 // Pool global de conexão
 let pool;
 
-// Inicializar dados de trilha se necessário
-async function initTrilhas() {
-  try {
-    const [rows] = await pool.query('SELECT COUNT(*) as count FROM trilha');
-    if (rows[0].count === 0) {
-      await pool.query(`
-        INSERT INTO trilha (id, titulo, descricao, imagem_logo) VALUES 
-        (1, 'Programação Front-end', 'Desenvolvimento de interfaces web', 'imgs/front-end-icon.svg'),
-        (2, 'Programação Back-end', 'Desenvolvimento de servidores e APIs', 'imgs/back-end-icon.svg'),
-        (3, 'Programação de Jogos', 'Desenvolvimento de jogos digitais', 'imgs/jogos-icon.svg'),
-        (4, 'Design e Experiência', 'Design de interfaces e experiência do usuário', 'imgs/design-icon.svg'),
-        (5, 'Ciência de Dados', 'Análise e processamento de dados', 'imgs/dados-icon.svg')
-      `);
-      console.log('Trilhas inicializadas');
-    }
-  } catch (error) {
-    console.error('Erro ao inicializar trilhas:', error);
-  }
-}
-
 // Inicializar perfis (roles) se necessário
 async function initRoles() {
   try {
@@ -97,16 +77,23 @@ async function initRoles() {
   }
 }
 
-// Rota para obter as trilhas disponíveis
-app.get('/api/trilhas', async (req, res) => {
-  try {
-    const [rows] = await pool.query('SELECT * FROM trilha');
-    res.json(rows);
-  } catch (error) {
-    console.error('Erro ao buscar trilhas:', error);
-    res.status(500).json({ message: 'Erro ao buscar trilhas' });
-  }
-});
+// Função para verificar se um email já existe
+async function checkEmailExists(email) {
+  const [rows] = await pool.query('SELECT COUNT(*) as count FROM user WHERE email = ?', [email]);
+  return rows[0].count > 0;
+}
+
+// Função para verificar se um username já existe
+async function checkUsernameExists(username) {
+  const [rows] = await pool.query('SELECT COUNT(*) as count FROM user WHERE username = ?', [username]);
+  return rows[0].count > 0;
+}
+
+// Função para verificar se um CPF já existe
+async function checkCPFExists(cpf) {
+  const [rows] = await pool.query('SELECT COUNT(*) as count FROM user WHERE cpf = ?', [cpf]);
+  return rows[0].count > 0;
+}
 
 // Rota para login
 app.post('/api/login', async (req, res) => {
@@ -146,12 +133,8 @@ app.get('/api/check-username/:username', async (req, res) => {
   const { username } = req.params;
 
   try {
-    const [rows] = await pool.query('SELECT COUNT(*) as count FROM user WHERE username = ?', [username]);
-    if (rows[0].count > 0) {
-      res.json({ available: false });
-    } else {
-      res.json({ available: true });
-    }
+    const exists = await checkUsernameExists(username);
+    res.json({ available: !exists });
   } catch (error) {
     console.error('Erro ao verificar username:', error);
     res.status(500).json({ message: 'Erro ao verificar disponibilidade de username' });
@@ -171,9 +154,26 @@ app.post('/api/register', upload.fields([
       return res.status(400).json({ message: 'Os documentos de identidade e comprovante de residência são obrigatórios' });
     }
     
-    // Agora podemos processar o restante do registro
     const userData = req.body;
 
+    // Verificar se o email já existe
+    const emailExists = await checkEmailExists(userData.email);
+    if (emailExists) {
+      return res.status(409).json({ message: 'Este email já está cadastrado' });
+    }
+
+    // Verificar se o username já existe
+    const usernameExists = await checkUsernameExists(userData.username);
+    if (usernameExists) {
+      return res.status(409).json({ message: 'Este nome de usuário já está em uso' });
+    }
+    
+    // Verificar se o CPF já existe
+    const cpfExists = await checkCPFExists(userData.cpf);
+    if (cpfExists) {
+      return res.status(409).json({ message: 'Este CPF já está cadastrado no sistema' });
+    }
+    
     // Iniciar transação
     await pool.query('START TRANSACTION');
     
@@ -247,7 +247,6 @@ async function startServer() {
     
     // Inicializar dados base
     await initRoles();
-    await initTrilhas();
     
     app.listen(PORT, () => {
       console.log(`Servidor rodando na porta ${PORT}`);
