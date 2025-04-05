@@ -164,7 +164,7 @@ function formClear() {
         input.value = "";
     }
 
-    localStorage.clear();
+    localStorage.setItem("signupState", "{}");
 }
 
 /* 
