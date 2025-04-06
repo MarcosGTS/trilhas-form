@@ -131,6 +131,7 @@ O site possui animações e pequenos efeitos que tornam a experiência mais agra
 ## 🎥 Lista de vídeos
 
 - [Apresentação 1](https://drive.google.com/file/d/1p6mRJ1Y5g6twMDGgjz8j99cxkSlytLfn/view?usp=sharing)
+- [Apresentação 2](https://youtu.be/l-IkDvE58Pc)
 
 
 > **Observação:** Os documentos obrigatórios estão disponíveis na pasta `Documents`.
